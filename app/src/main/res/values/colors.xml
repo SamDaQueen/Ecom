@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#4dd0e1</color>-->
+    <!--<color name="colorPrimaryDark">#009faf</color>-->
+    <!--<color name="colorPrimaryLight">#88ffff</color>-->
+    <!--<color name="colorAccent">#00bcd4</color>-->
+
+    <color name="colorPrimary">#ff7043</color>
+    <color name="colorPrimaryDark">#c63f17</color>
+    <color name="colorPrimaryLight">#ffa270</color>
+    <color name="colorAccent">#ff5722</color>
+
+    <color name="defaultTextColor">#FFFFFF</color>
+    <color name="defaultBGColor">#FAFAFA</color>
+</resources>
