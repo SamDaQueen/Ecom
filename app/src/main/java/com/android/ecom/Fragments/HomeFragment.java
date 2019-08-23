@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import com.android.ecom.Adapters.HomeTileAdapter;
 import com.android.ecom.Models.HomeTile;
@@ -19,8 +18,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -31,8 +28,6 @@ public class HomeFragment extends Fragment {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     ChildEventListener childEventListener;
-    StorageReference storageReference;
-    FirebaseStorage firebaseStorage;
     ArrayList<HomeTile> arrayList;
     HomeTileAdapter homeTileAdapter;
     GridView gridView;

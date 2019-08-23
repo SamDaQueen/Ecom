@@ -23,13 +23,10 @@ import java.util.ArrayList;
 
 public class HomeTileAdapter extends ArrayAdapter<HomeTile> {
 
-    final long ONE_MEGABYTE = 1024 * 1024;
     StorageReference storageReference;
-    private ArrayList<HomeTile> object;
 
     public HomeTileAdapter(@NonNull Context context, int resource, ArrayList<HomeTile> objects) {
         super(context, resource, objects);
-        this.object = objects;
     }
 
     @Override

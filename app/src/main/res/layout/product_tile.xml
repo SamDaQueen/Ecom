@@ -1,48 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:orientation="horizontal">
 
     <ImageView
+        android:id="@+id/product_photo"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_weight="1"
         android:src="@drawable/fruit" />
 
     <LinearLayout
-        android:padding="15dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="15dp">
 
         <TextView
+            android:id="@+id/product_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Product Name" />
 
         <TextView
+            android:id="@+id/product_size"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Product Size" />
 
         <TextView
+            android:id="@+id/product_MRP"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Product MRP" />
 
         <TextView
+            android:id="@+id/product_price"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Product Price" />
     </LinearLayout>
 
-    <Button
+    <android.support.v7.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:backgroundTint="@color/colorAccent"
-        android:text="+" />
+        app:cardCornerRadius="15dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="0dp"
+            android:padding="0dp">
+
+            <Button
+                android:id="@+id/decrement"
+                android:layout_width="@dimen/but_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:backgroundTint="@color/colorPrimaryLight"
+                android:text="-" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="0"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/increment"
+                android:layout_width="@dimen/but_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:backgroundTint="@color/colorPrimaryLight"
+                android:text="+" />
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 </LinearLayout>
+
+
