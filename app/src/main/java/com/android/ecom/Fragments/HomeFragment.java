@@ -1,5 +1,6 @@
 package com.android.ecom.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,8 +9,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
+import com.android.ecom.Activities.ProductsActivity;
 import com.android.ecom.Adapters.HomeTileAdapter;
 import com.android.ecom.Models.HomeTile;
 import com.android.ecom.R;
@@ -38,16 +42,6 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         // Inflate the layout for this fragment
 //        gridView.setAdapter(new GridViewAdapter(getContext(), MOBILE_OS));
-//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            public void onItemClick(AdapterView<?> parent, View v,
-//                                    int position, long id) {
-//                Toast.makeText(
-//                        getContext(),
-//                        ((TextView) v.findViewById(R.id.tile_name))
-//                                .getText(), Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
 
         gridView = root.findViewById(R.id.home_grid);
         arrayList = new ArrayList<>();
@@ -55,6 +49,15 @@ public class HomeFragment extends Fragment {
                 Objects.requireNonNull(getActivity()), R.layout.category_tile, arrayList);
         getFromRD();
         gridView.setAdapter(homeTileAdapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Toast.makeText(getActivity(), "i was clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), ProductsActivity.class);
+                intent.putExtra("category", arrayList.get(position).getName());
+                startActivity(intent);
+            }
+        });
         return root;
     }
 
@@ -101,4 +104,12 @@ public class HomeFragment extends Fragment {
             databaseReference.addChildEventListener(childEventListener);
         }
     }
+
+//    @Override
+//    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+//        Toast.makeText(getActivity(),"i was clicked",Toast.LENGTH_SHORT ).show();
+//        Intent intent = new Intent(getActivity(), ProductsActivity.class);
+//        intent.putExtra("category", arrayList.get(position).getName());
+//        startActivity(intent);
+//    }
 }
