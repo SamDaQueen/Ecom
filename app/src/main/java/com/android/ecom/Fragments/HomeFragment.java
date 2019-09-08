@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import com.android.ecom.Activities.ProductsActivity;
 import com.android.ecom.Adapters.HomeTileAdapter;
@@ -26,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import static com.android.ecom.Fragments.CartFragment.cart_list;
 
 public class HomeFragment extends Fragment {
 
@@ -52,7 +52,6 @@ public class HomeFragment extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Toast.makeText(getActivity(), "i was clicked", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), ProductsActivity.class);
                 intent.putExtra("category", arrayList.get(position).getName());
                 startActivity(intent);
@@ -65,6 +64,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //you can set the title for your toolbar here for different fragments different titles
+        cart_list = new ArrayList<>();
         Objects.requireNonNull(getActivity()).setTitle("Home");
 
     }

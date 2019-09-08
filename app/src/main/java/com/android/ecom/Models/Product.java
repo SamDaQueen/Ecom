@@ -1,12 +1,16 @@
 package com.android.ecom.Models;
 
-public class Product {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Product implements Parcelable {
 
     private int id;
     private String name;
     private String size;
     private float MRP;
     private float price;
+    private int quantity;
 
     public Product() {
     }
@@ -57,5 +61,23 @@ public class Product {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
     }
 }

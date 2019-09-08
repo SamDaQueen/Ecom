@@ -2,6 +2,7 @@ package com.android.ecom.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ListView;
@@ -16,6 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+
+import static com.android.ecom.Fragments.CartFragment.cart_list;
 
 public class ProductsActivity extends AppCompatActivity {
 
@@ -34,6 +37,10 @@ public class ProductsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null)
             category = intent.getStringExtra("category");
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(category);
         setUpView();
     }
 
@@ -61,7 +68,8 @@ public class ProductsActivity extends AppCompatActivity {
                     Log.d("success", "onChildAdded: "
                             + product.getId() + product.getName() + product.getSize()
                             + product.getMRP() + product.getPrice());
-                    productAdapter.add(product);
+                    if (!cart_list.contains(product))
+                        productAdapter.add(product);
                 }
 
                 @Override
@@ -83,4 +91,11 @@ public class ProductsActivity extends AppCompatActivity {
             databaseReference.addChildEventListener(childEventListener);
         }
     }
+
+//    @Override
+//    public boolean onSupportNavigateUp() {
+//        //sending the MenuAdapter object to MainActivity
+//        startActivity(new Intent(ProductsActivity.this, MainActivity.class));
+//        return true;
+//    }
 }

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.ecom.Fragments.CartFragment;
 import com.android.ecom.Models.Product;
 import com.android.ecom.R;
 
@@ -16,9 +17,9 @@ import java.util.ArrayList;
 
 import static com.android.ecom.Fragments.CartFragment.cart_list;
 
-public class ProductAdapter extends ArrayAdapter<Product> {
+public class CartAdapter extends ArrayAdapter<Product> {
 
-    public ProductAdapter(Context context, int resource, ArrayList<Product> objects) {
+    public CartAdapter(Context context, int resource, ArrayList<Product> objects) {
         super(context, resource, objects);
     }
 
@@ -36,7 +37,6 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         final TextView quantity = convertView.findViewById(R.id.quantity);
         Button increment = convertView.findViewById(R.id.increment);
         final Button decrement = convertView.findViewById(R.id.decrement);
-        decrement.setEnabled(false);
 
         final Product product = getItem(position);
 
@@ -44,7 +44,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
             name.setText(product.getName());
             size.setText(String.format("Quantity: %s", product.getSize()));
             MRP.setText(String.format("MRP: %s", String.valueOf(product.getMRP())));
-            price.setText(String.format("Our price:%s", String.valueOf(product.getPrice())));
+            price.setText(String.format("Total:%s", String.valueOf(product.getPrice() * product.getQuantity())));
             quantity.setText(String.valueOf(product.getQuantity()));
 
             increment.setOnClickListener(new View.OnClickListener() {
@@ -71,16 +71,15 @@ public class ProductAdapter extends ArrayAdapter<Product> {
                     if (count > 1) {
                         count--;
                         quantity.setText(String.valueOf(count));
-                        product.setQuantity(count);
 //                        total -= Float.parseFloat(String.valueOf(item.getPrice()));
                     } else {
-                        quantity.setText("0");
-                        decrement.setEnabled(false);
+                        cart_list.remove(product);
+                        CartFragment.updateList();
                     }
                 }
             });
         }
+
         return convertView;
     }
 }
-

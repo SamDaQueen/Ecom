@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activities.ProductsActivity">
+    tools:context=".Fragments.CartFragment">
 
     <ListView
-        android:id="@+id/product_list"
+        android:id="@+id/cart_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="10dp"
@@ -15,13 +15,12 @@
         tools:listitem="@layout/product_tile" />
 
     <LinearLayout
-        android:id="@+id/ribbon"
+        android:id="@+id/checkout_ribbon"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/colorAccent"
-        android:gravity="bottom"
-        android:orientation="horizontal">
+        android:gravity="bottom">
 
         <TextView
             style="@style/ribbon_text"
@@ -32,7 +31,7 @@
             style="@style/ribbon_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="Go To Cart" />
+            android:text="Checkout" />
     </LinearLayout>
 
 </LinearLayout>

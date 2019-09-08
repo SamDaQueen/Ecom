@@ -1,6 +1,5 @@
 package com.android.ecom.Activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -11,14 +10,20 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.android.ecom.Fragments.CartFragment;
 import com.android.ecom.Fragments.HomeFragment;
 import com.android.ecom.R;
 
+import static com.android.ecom.Fragments.CartFragment.cart_list;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static final String TAG = "Debug";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,15 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        if (savedInstanceState == null) {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.content_frame, new HomeFragment());
+            fragmentTransaction.commit();
+        } else {
+            Log.i(TAG, "onRestoreInstanceState");
+            cart_list = savedInstanceState.getParcelableArrayList("cart");
+        }
     }
 
     @Override
@@ -77,14 +91,9 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             fragment = new HomeFragment();
         } else if (id == R.id.nav_cart) {
-
-        } else if (id == R.id.nav_history) {
-
+            fragment = new CartFragment();
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_prod) {
-            Intent intent = new Intent(MainActivity.this, ProductsActivity.class);
-            startActivity(intent);
         }
 
         if (fragment != null) {
@@ -97,4 +106,19 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.i(TAG, "onSaveInstanceState");
+        outState.putParcelableArrayList("cart", cart_list);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+    }
 }
+
+

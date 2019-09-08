@@ -17,4 +17,21 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="ribbon_button">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">12dp</item>
+        <item name="android:backgroundTint">@android:color/white</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="ribbon_text">
+        <item name="android:layout_weight">2</item>
+        <item name="android:layout_margin">12dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:text">Total: 100</item>
+        <item name="android:backgroundTint">@android:color/white</item>
+        <item name="android:textColor">@color/defaultTextColor</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
 </resources>
