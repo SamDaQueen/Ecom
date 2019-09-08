@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.ecom.Adapters.ProductAdapter;
 import com.android.ecom.Models.Product;
@@ -19,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 import static com.android.ecom.Fragments.CartFragment.cart_list;
+import static com.android.ecom.Fragments.CartFragment.total;
 
 public class ProductsActivity extends AppCompatActivity {
 
@@ -29,6 +32,12 @@ public class ProductsActivity extends AppCompatActivity {
     ProductAdapter productAdapter;
     ListView listView;
     String category;
+    static TextView total_text;
+    Button goToCart;
+
+    public static void updateTotal() {
+        total_text.setText(String.format("Total: \u20B9 %s", String.valueOf(total)));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +48,10 @@ public class ProductsActivity extends AppCompatActivity {
             category = intent.getStringExtra("category");
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        //TODO: back button
+//        actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(category);
         setUpView();
-    }
-
-    private void setUpView() {
-        listView = findViewById(R.id.product_list);
-        arrayList = new ArrayList<>();
-        productAdapter = new ProductAdapter(
-                ProductsActivity.this, R.layout.product_tile, arrayList);
-        getFromRD();
-        listView.setAdapter(productAdapter);
     }
 
     private void getFromRD() {
@@ -92,10 +93,25 @@ public class ProductsActivity extends AppCompatActivity {
         }
     }
 
-//    @Override
-//    public boolean onSupportNavigateUp() {
-//        //sending the MenuAdapter object to MainActivity
-//        startActivity(new Intent(ProductsActivity.this, MainActivity.class));
-//        return true;
-//    }
+    private void setUpView() {
+        listView = findViewById(R.id.product_list);
+        arrayList = new ArrayList<>();
+        productAdapter = new ProductAdapter(
+                ProductsActivity.this, R.layout.product_tile, arrayList);
+        getFromRD();
+        listView.setAdapter(productAdapter);
+        total_text = findViewById(R.id.total_view);
+        total_text.setText(String.format("Total: \u20B9 %s", String.valueOf(total)));
+
+        //TODO : make go to cart button functionality
+//        goToCart = findViewById(R.id.go_to_cart);
+//        goToCart.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(ProductsActivity.this, MainActivity.class);
+//                intent.putExtra("fragment", "cart");
+//                startActivity(intent);
+//            }
+//        });
+    }
 }

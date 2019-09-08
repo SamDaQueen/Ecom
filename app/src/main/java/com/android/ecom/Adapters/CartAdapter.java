@@ -16,6 +16,7 @@ import com.android.ecom.R;
 import java.util.ArrayList;
 
 import static com.android.ecom.Fragments.CartFragment.cart_list;
+import static com.android.ecom.Fragments.CartFragment.updateCartTotal;
 
 public class CartAdapter extends ArrayAdapter<Product> {
 
@@ -59,7 +60,8 @@ public class CartAdapter extends ArrayAdapter<Product> {
                         if (!cart_list.contains(product)) {
                             cart_list.add(product);
                         }
-//                        total += Float.parseFloat(String.valueOf(item.getPrice()));
+                        CartFragment.total += Float.parseFloat(String.valueOf(product.getPrice()));
+                        updateCartTotal();
                     } else
                         Toast.makeText(getContext(), "You cannot order more than 15 items!", Toast.LENGTH_SHORT).show();
                 }
@@ -68,13 +70,15 @@ public class CartAdapter extends ArrayAdapter<Product> {
                 @Override
                 public void onClick(View view) {
                     int count = Integer.parseInt(quantity.getText().toString());
-                    if (count > 1) {
+                    if (count > 0) {
                         count--;
                         quantity.setText(String.valueOf(count));
-//                        total -= Float.parseFloat(String.valueOf(item.getPrice()));
+                        CartFragment.total -= Float.parseFloat(String.valueOf(product.getPrice()));
+                        updateCartTotal();
                     } else {
                         cart_list.remove(product);
                         CartFragment.updateList();
+                        updateCartTotal();
                     }
                 }
             });

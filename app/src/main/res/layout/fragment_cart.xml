@@ -23,15 +23,17 @@
         android:gravity="bottom">
 
         <TextView
+            android:id="@+id/total_view"
             style="@style/ribbon_text"
             android:layout_width="0dp"
             android:layout_height="match_parent" />
 
         <Button
+            android:id="@+id/place_order"
             style="@style/ribbon_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="Checkout" />
+            android:text="Confirm" />
     </LinearLayout>
 
 </LinearLayout>

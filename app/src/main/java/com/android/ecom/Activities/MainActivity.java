@@ -47,6 +47,15 @@ public class MainActivity extends AppCompatActivity
             Log.i(TAG, "onRestoreInstanceState");
             cart_list = savedInstanceState.getParcelableArrayList("cart");
         }
+
+        String fragment = getIntent().getStringExtra("fragment");
+        if (fragment != null) {
+            if (fragment.equals("cart")) {
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.content_frame, new CartFragment());
+                fragmentTransaction.commit();
+            }
+        }
     }
 
     @Override
