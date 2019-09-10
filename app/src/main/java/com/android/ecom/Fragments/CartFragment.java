@@ -129,10 +129,16 @@ public class CartFragment extends Fragment {
 
                     try {
                         startActivity(Intent.createChooser(email, "Choose email client:"));
+                        cart_list.clear();
+                        total = 0;
+                        total_text.setText(String.format("Total: \u20B9 %s", String.valueOf(total)));
+//                        Toast.makeText(getActivity(), "Your order has been placed!", Toast.LENGTH_LONG).show();
+                        dialog.dismiss();
                     } catch (android.content.ActivityNotFoundException ex) {
                         Toast.makeText(getActivity(), "No Email client found!!",
                                 Toast.LENGTH_SHORT).show();
                     }
+
 //                    String mailto = "mailto:faris.subhan.app@gmail.com" +
 //                            "&subject=" + Uri.encode(subject) +
 //                            "&body=" + Uri.encode(message);
