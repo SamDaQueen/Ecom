@@ -111,18 +111,18 @@ public class CartFragment extends Fragment {
                 if (name_text.equals("") || phone_text.equals("") || address_text.equals("")) {
                     Toast.makeText(getActivity(), "Please fill all values!", Toast.LENGTH_LONG).show();
                 } else {
-                    String message = "Address:" + address_text + "\n\nOrder:\n";
+                    StringBuilder message = new StringBuilder("Address:" + address_text + "\n\nOrder:\n");
                     String to = "faris.subhan.app@gmail.com";
                     String subject = "New order from " + name_text;
                     for (Product element : cart_list) {
-                        message += element.getName() + " Quantity:" + element.getQuantity() + "\n";
+                        message.append(element.getName()).append(" Quantity:").append(element.getQuantity()).append("\n");
                     }
-                    message += "\nTotal: " + total;
+                    message.append("\nTotal: ").append(total);
 
                     Intent email = new Intent(Intent.ACTION_SEND);
                     email.putExtra(Intent.EXTRA_EMAIL, new String[]{to});
                     email.putExtra(Intent.EXTRA_SUBJECT, subject);
-                    email.putExtra(Intent.EXTRA_TEXT, message);
+                    email.putExtra(Intent.EXTRA_TEXT, message.toString());
 
                     //need this to prompts email client only
                     email.setType("message/rfc822");
