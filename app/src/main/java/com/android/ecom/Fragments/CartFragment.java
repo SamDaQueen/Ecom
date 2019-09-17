@@ -1,7 +1,6 @@
 package com.android.ecom.Fragments;
 
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -20,9 +19,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.ecom.Adapters.CartAdapter;
+import com.android.ecom.Emailer.GmailSender;
 import com.android.ecom.Models.Product;
 import com.android.ecom.R;
 
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -111,33 +112,61 @@ public class CartFragment extends Fragment {
                 if (name_text.equals("") || phone_text.equals("") || address_text.equals("")) {
                     Toast.makeText(getActivity(), "Please fill all values!", Toast.LENGTH_LONG).show();
                 } else {
-                    StringBuilder message = new StringBuilder("Address:" + address_text + "\n\nOrder:\n");
-                    String to = "faris.subhan.app@gmail.com";
-                    String subject = "New order from " + name_text;
+                    final StringBuilder message = new StringBuilder("Address:" + address_text + "\n\nOrder:\n");
+                    final String from = "samreenansari1998@gmail.com";
+                    final String password = "samyansari_16";
+                    final String subject = "New order from " + name_text;
                     for (Product element : cart_list) {
                         message.append(element.getName()).append(" Quantity:").append(element.getQuantity()).append("\n");
                     }
                     message.append("\nTotal: ").append(total);
-
-                    Intent email = new Intent(Intent.ACTION_SEND);
-                    email.putExtra(Intent.EXTRA_EMAIL, new String[]{to});
-                    email.putExtra(Intent.EXTRA_SUBJECT, subject);
-                    email.putExtra(Intent.EXTRA_TEXT, message.toString());
-
-                    //need this to prompts email client only
-                    email.setType("message/rfc822");
-
-                    try {
-                        startActivity(Intent.createChooser(email, "Choose email client:"));
-                        cart_list.clear();
-                        total = 0;
-                        total_text.setText(String.format("Total: \u20B9 %s", String.valueOf(total)));
-//                        Toast.makeText(getActivity(), "Your order has been placed!", Toast.LENGTH_LONG).show();
-                        dialog.dismiss();
-                    } catch (android.content.ActivityNotFoundException ex) {
-                        Toast.makeText(getActivity(), "No Email client found!!",
-                                Toast.LENGTH_SHORT).show();
-                    }
+                    if (isInternetAvailable()) {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    GmailSender sender = new GmailSender(from, password);
+                                    sender.sendMail(subject, message.toString(),
+                                            from, "samreenreyaz@outlook.com");
+                                    //Toast.makeText(getActivity(), "Success", Toast.LENGTH_LONG).show();
+                                    Log.d("email", "run: email sent");
+                                } catch (Exception e) {
+                                    Toast.makeText(getContext(), "Error", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        }).start();
+                    } else
+                        Toast.makeText(getActivity(), "No Internet Connection!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+//                    StringBuilder message = new StringBuilder("Address:" + address_text + "\n\nOrder:\n");
+//                    String to = "faris.subhan.app@gmail.com";
+//                    String subject = "New order from " + name_text;
+//                    for (Product element : cart_list) {
+//                        message.append(element.getName()).append(" Quantity:").append(element.getQuantity()).append("\n");
+//                    }
+//                    message.append("\nTotal: ").append(total);
+//
+//                    Intent email = new Intent(Intent.ACTION_SEND);
+//                    email.putExtra(Intent.EXTRA_EMAIL, new String[]{to});
+//                    email.putExtra(Intent.EXTRA_SUBJECT, subject);
+//                    email.putExtra(Intent.EXTRA_TEXT, message.toString());
+//
+//                    //need this to prompts email client only
+//                    email.setType("message/rfc822");
+//
+//                    try {
+//                        startActivity(Intent.createChooser(email, "Choose email client:"));
+//                        cart_list.clear();
+//                        total = 0;
+//                        total_text.setText(String.format("Total: \u20B9 %s", String.valueOf(total)));
+////                        Toast.makeText(getActivity(), "Your order has been placed!", Toast.LENGTH_LONG).show();
+//                        dialog.dismiss();
+//                    } catch (android.content.ActivityNotFoundException ex) {
+//                        Toast.makeText(getActivity(), "No Email client found!!",
+//                                Toast.LENGTH_SHORT).show();
+//                    }
 
 //                    String mailto = "mailto:faris.subhan.app@gmail.com" +
 //                            "&subject=" + Uri.encode(subject) +
@@ -152,10 +181,18 @@ public class CartFragment extends Fragment {
 //                        Toast.makeText(getActivity(),"Unknown error occurred", Toast.LENGTH_LONG).show();
 //                    }
                 }
-            }
-        });
 
-//        dialog.dismiss();
+//        dialog.dismiss()
+
+    public boolean isInternetAvailable() {
+        try {
+            InetAddress ipAddr = InetAddress.getByName("google.com");
+            //You can replace it with your name
+            return !ipAddr.equals("");
+
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 
