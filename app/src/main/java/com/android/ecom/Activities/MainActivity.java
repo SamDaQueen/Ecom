@@ -16,6 +16,7 @@ import android.view.MenuItem;
 
 import com.android.ecom.Databases.SPManager;
 import com.android.ecom.Fragments.CartFragment;
+import com.android.ecom.Fragments.CategoryFragment;
 import com.android.ecom.Fragments.HomeFragment;
 import com.android.ecom.R;
 import com.firebase.ui.auth.AuthUI;
@@ -111,12 +112,28 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         Fragment fragment = new HomeFragment();
 
-        if (id == R.id.nav_home) {
+        if (id == R.id.nav_home)
             fragment = new HomeFragment();
-        } else if (id == R.id.nav_cart) {
+        else if (id == R.id.nav_cart)
             fragment = new CartFragment();
-        } else if (id == R.id.nav_share) {
-
+        else if (id == R.id.nav_baby) {
+            fragment = new CategoryFragment();
+        } else if (id == R.id.nav_beverage) {
+            fragment = new CategoryFragment();
+        } else if (id == R.id.nav_biscuits) {
+            fragment = new CategoryFragment();
+        } else if (id == R.id.nav_breakfast) {
+            fragment = new CategoryFragment();
+        } else if (id == R.id.nav_grocery) {
+            fragment = new CategoryFragment();
+        } else if (id == R.id.nav_household) {
+            fragment = new CategoryFragment();
+        } else if (id == R.id.nav_noodles) {
+            fragment = new CategoryFragment();
+        } else if (id == R.id.nav_personal) {
+            fragment = new CategoryFragment();
+        } else if (id == R.id.nav_vegetables) {
+            fragment = new CategoryFragment();
         }
 
         if (fragment != null) {

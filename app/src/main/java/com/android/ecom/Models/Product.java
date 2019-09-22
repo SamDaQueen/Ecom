@@ -11,16 +11,26 @@ public class Product implements Parcelable {
     private float MRP;
     private float price;
     private int quantity;
+    private String photo;
 
-    public Product() {
-    }
-
-    public Product(int id, String name, String size, float MRP, float price) {
+    public Product(int id, String name, String size, float MRP, float price, String photo) {
         this.id = id;
         this.name = name;
         this.size = size;
         this.MRP = MRP;
         this.price = price;
+        this.photo = photo;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public Product() {
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public int getId() {

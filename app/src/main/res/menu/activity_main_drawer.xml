@@ -6,12 +6,54 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/home"
+            android:icon="@drawable/home_icon_silhouette"
             android:title="@string/menu_home" />
         <item
             android:id="@+id/nav_cart"
-            android:icon="@drawable/shoppingcart"
+            android:icon="@drawable/shopping_cart"
             android:title="@string/menu_cart" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item android:title="@string/categories">
+            <menu>
+                <item
+                    android:id="@+id/nav_baby"
+                    android:icon="@drawable/sippy_cup"
+                    android:title="@string/baby_amp_kids" />
+                <item
+                    android:id="@+id/nav_beverage"
+                    android:icon="@drawable/hot_cup_of_coffee"
+                    android:title="@string/beverage_amp_cold_drinks" />
+                <item
+                    android:id="@+id/nav_biscuits"
+                    android:icon="@drawable/cookies"
+                    android:title="@string/biscuits_amp_snacks" />
+                <item
+                    android:id="@+id/nav_breakfast"
+                    android:icon="@drawable/two_bread_toasts"
+                    android:title="@string/breakfast_amp_dairy" />
+                <item
+                    android:id="@+id/nav_grocery"
+                    android:icon="@drawable/olive_oil_bottle"
+                    android:title="@string/grocery_amp_staples" />
+                <item
+                    android:id="@+id/nav_household"
+                    android:icon="@drawable/soap"
+                    android:title="@string/household_needs" />
+                <item
+                    android:id="@+id/nav_noodles"
+                    android:icon="@drawable/ketchup"
+                    android:title="@string/instant_foods_amp_sauce" />
+                <item
+                    android:id="@+id/nav_personal"
+                    android:icon="@drawable/beauty_products"
+                    android:title="@string/personal_care" />
+                <item
+                    android:id="@+id/nav_vegetables"
+                    android:icon="@drawable/apple"
+                    android:title="@string/vegetables_amp_fruits" />
+            </menu>
+        </item>
         <!-- TODO: Add history functionality -->
         <!--<item-->
         <!--android:id="@+id/nav_history"-->
@@ -19,8 +61,7 @@
         <!--android:title="@string/menu_history" />-->
 
     </group>
-
-    <item android:title="Communicate">
+    <item android:title="@string/communicate">
         <menu>
             <item
                 android:id="@+id/nav_share"

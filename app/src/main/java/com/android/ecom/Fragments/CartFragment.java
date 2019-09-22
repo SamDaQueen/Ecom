@@ -130,6 +130,7 @@ public class CartFragment extends Fragment {
                                             from, "samreenreyaz@outlook.com");
                                     //Toast.makeText(getActivity(), "Success", Toast.LENGTH_LONG).show();
                                     Log.d("email", "run: email sent");
+                                    dialog.dismiss();
                                 } catch (Exception e) {
                                     Toast.makeText(getContext(), "Error", Toast.LENGTH_LONG).show();
                                 }

@@ -46,7 +46,7 @@ public class HomeTileAdapter extends ArrayAdapter<HomeTile> {
             // Create a storage reference from our app
             storageReference = FirebaseStorage.getInstance().getReferenceFromUrl("gs://ecom-8af80.appspot.com");
             // Create a reference with an initial file path and name
-            StorageReference pathReference = storageReference.child("/Categories/" + homeTile.getPhoto());
+            //StorageReference pathReference = storageReference.child("/Categories/" + homeTile.getPhoto());
             storageReference.child("/Categories/" + homeTile.getPhoto()).getDownloadUrl()
                     .addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
