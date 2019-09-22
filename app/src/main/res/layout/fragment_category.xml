@@ -29,13 +29,12 @@
             android:layout_width="0dp"
             android:layout_height="match_parent" />
 
-        <!--TODO: make go to cart button -->
-        <!--<Button-->
-        <!--android:id="@+id/go_to_cart"-->
-        <!--style="@style/ribbon_button"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:text="Go To Cart" />-->
+        <Button
+            android:id="@+id/go_to_cart"
+            style="@style/ribbon_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Go To Cart" />
     </LinearLayout>
 
 </LinearLayout>

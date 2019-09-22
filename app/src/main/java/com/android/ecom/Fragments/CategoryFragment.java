@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,16 +75,17 @@ public class CategoryFragment extends Fragment {
         total_text = root.findViewById(R.id.total_view);
         total_text.setText(String.format("Total: \u20B9 %s", String.valueOf(total)));
 
-        //TODO : make go to cart button functionality
-//        goToCart = findViewById(R.id.go_to_cart);
-//        goToCart.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(ProductsActivity.this, MainActivity.class);
-//                intent.putExtra("fragment", "cart");
-//                startActivity(intent);
-//            }
-//        });
+        goToCart = root.findViewById(R.id.go_to_cart);
+        goToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new CartFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.content_frame, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
     }
 
     private void getFromRD() {
