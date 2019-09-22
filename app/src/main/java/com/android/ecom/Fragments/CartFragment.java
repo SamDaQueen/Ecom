@@ -1,8 +1,11 @@
 package com.android.ecom.Fragments;
 
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,7 +26,6 @@ import com.android.ecom.Emailer.GmailSender;
 import com.android.ecom.Models.Product;
 import com.android.ecom.R;
 
-import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -73,7 +75,7 @@ public class CartFragment extends Fragment {
                 getContext(), R.layout.product_tile, cart_list);
         listView.setAdapter(cartAdapter);
         total_text = root.findViewById(R.id.total_view);
-        total_text.setText(String.format("Total: \u20B9 %s", String.valueOf(total)));
+        updateCartTotal();
 
         placeOrder = root.findViewById(R.id.place_order);
         placeOrder.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +103,7 @@ public class CartFragment extends Fragment {
         final TextInputEditText phone = pushDialog.findViewById(R.id.phone);
         final TextInputEditText address = pushDialog.findViewById(R.id.address);
 
-        Button sendMail = pushDialog.findViewById(R.id.send_mail);
+        final Button sendMail = pushDialog.findViewById(R.id.send_mail);
         sendMail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,27 +114,34 @@ public class CartFragment extends Fragment {
                 if (name_text.equals("") || phone_text.equals("") || address_text.equals("")) {
                     Toast.makeText(getActivity(), "Please fill all values!", Toast.LENGTH_LONG).show();
                 } else {
-                    final StringBuilder message = new StringBuilder("Address:" + address_text + "\n\nOrder:\n");
-                    final String from = "samreenansari1998@gmail.com";
-                    final String password = "samyansari_16";
-                    final String subject = "New order from " + name_text;
-                    for (Product element : cart_list) {
-                        message.append(element.getName()).append(" Quantity:").append(element.getQuantity()).append("\n");
-                    }
-                    message.append("\nTotal: ").append(total);
-                    if (isInternetAvailable()) {
+                    if (isNetworkAvailable()) {
+                        sendMail.setEnabled(false);
+                        sendMail.setText("Please Wait...");
+                        final StringBuilder message = new StringBuilder("Address:" + address_text + "\n\nOrder:\n");
+                        final String from = "faris.subhan.app@gmail.com";
+                        final String password = "delivery_app";
+                        final String to = "faris.subhan.app@gmail.com";
+                        final String subject = "New order from " + name_text;
+                        for (Product element : cart_list) {
+                            message.append(element.getName()).append(" Quantity:").append(element.getQuantity()).append("\n");
+                        }
+                        message.append("\nTotal: ").append(total);
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
                                 try {
                                     GmailSender sender = new GmailSender(from, password);
                                     sender.sendMail(subject, message.toString(),
-                                            from, "samreenreyaz@outlook.com");
+                                            from, to);
                                     //Toast.makeText(getActivity(), "Success", Toast.LENGTH_LONG).show();
                                     Log.d("email", "run: email sent");
                                     dialog.dismiss();
+                                    cart_list.clear();
+                                    total = 0;
+                                    updateCartTotal();
+                                    showToast("Order Placed");
                                 } catch (Exception e) {
-                                    Toast.makeText(getContext(), "Error", Toast.LENGTH_LONG).show();
+                                    showToast(e.getMessage());
                                 }
                             }
                         }).start();
@@ -141,60 +150,21 @@ public class CartFragment extends Fragment {
                 }
             }
         });
-//                    StringBuilder message = new StringBuilder("Address:" + address_text + "\n\nOrder:\n");
-//                    String to = "faris.subhan.app@gmail.com";
-//                    String subject = "New order from " + name_text;
-//                    for (Product element : cart_list) {
-//                        message.append(element.getName()).append(" Quantity:").append(element.getQuantity()).append("\n");
-//                    }
-//                    message.append("\nTotal: ").append(total);
-//
-//                    Intent email = new Intent(Intent.ACTION_SEND);
-//                    email.putExtra(Intent.EXTRA_EMAIL, new String[]{to});
-//                    email.putExtra(Intent.EXTRA_SUBJECT, subject);
-//                    email.putExtra(Intent.EXTRA_TEXT, message.toString());
-//
-//                    //need this to prompts email client only
-//                    email.setType("message/rfc822");
-//
-//                    try {
-//                        startActivity(Intent.createChooser(email, "Choose email client:"));
-//                        cart_list.clear();
-//                        total = 0;
-//                        total_text.setText(String.format("Total: \u20B9 %s", String.valueOf(total)));
-////                        Toast.makeText(getActivity(), "Your order has been placed!", Toast.LENGTH_LONG).show();
-//                        dialog.dismiss();
-//                    } catch (android.content.ActivityNotFoundException ex) {
-//                        Toast.makeText(getActivity(), "No Email client found!!",
-//                                Toast.LENGTH_SHORT).show();
-//                    }
-
-//                    String mailto = "mailto:faris.subhan.app@gmail.com" +
-//                            "&subject=" + Uri.encode(subject) +
-//                            "&body=" + Uri.encode(message);
-//
-//                    Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-//                    emailIntent.setData(Uri.parse(mailto));
-//
-//                    try {
-//                        startActivity(emailIntent);
-//                    } catch (ActivityNotFoundException e) {
-//                        Toast.makeText(getActivity(),"Unknown error occurred", Toast.LENGTH_LONG).show();
-//                    }
-                }
-
-//        dialog.dismiss()
-
-    public boolean isInternetAvailable() {
-        try {
-            InetAddress ipAddr = InetAddress.getByName("google.com");
-            //You can replace it with your name
-            return !ipAddr.equals("");
-
-        } catch (Exception e) {
-            return false;
-        }
     }
 
+    public void showToast(final String toast) {
+        Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(CartFragment.this.getContext(), toast, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
 }
