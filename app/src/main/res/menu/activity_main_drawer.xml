@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group android:id="@+id/group_nav">
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/home_icon_silhouette"
@@ -12,9 +12,9 @@
             android:id="@+id/nav_cart"
             android:icon="@drawable/shopping_cart"
             android:title="@string/menu_cart" />
-    </group>
-    <group android:checkableBehavior="single">
-        <item android:title="@string/categories">
+        <item
+            android:id="@+id/category_nav"
+            android:title="@string/categories">
             <menu>
                 <item
                     android:id="@+id/nav_baby"
@@ -60,14 +60,14 @@
         <!--android:icon="@drawable/ic_menu_manage"-->
         <!--android:title="@string/menu_history" />-->
 
+        <item android:title="@string/communicate">
+            <menu>
+                <item
+                    android:id="@+id/nav_share"
+                    android:icon="@drawable/ic_menu_share"
+                    android:title="@string/menu_share" />
+            </menu>
+        </item>
     </group>
-    <item android:title="@string/communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="@string/menu_share" />
-        </menu>
-    </item>
 
 </menu>

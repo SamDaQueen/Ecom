@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity
     private String mUsername;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    NavigationView navigationView;
+    MenuItem previousItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity
         mAuth = FirebaseAuth.getInstance();
         login();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -109,31 +111,55 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
+        item.setCheckable(true);
+        item.setChecked(true);
+        if (previousItem != null && previousItem != item)
+            previousItem.setChecked(false);
+        previousItem = item;
         int id = item.getItemId();
         Fragment fragment = new HomeFragment();
+        Bundle bundle = new Bundle();
 
         if (id == R.id.nav_home)
             fragment = new HomeFragment();
         else if (id == R.id.nav_cart)
             fragment = new CartFragment();
         else if (id == R.id.nav_baby) {
+            bundle.putString("category", "Baby & Kids");
             fragment = new CategoryFragment();
+            fragment.setArguments(bundle);
         } else if (id == R.id.nav_beverage) {
+            bundle.putString("category", "Beverage & Cold Drinks");
             fragment = new CategoryFragment();
+            fragment.setArguments(bundle);
         } else if (id == R.id.nav_biscuits) {
+            bundle.putString("category", "Biscuits & Snacks");
             fragment = new CategoryFragment();
+            fragment.setArguments(bundle);
         } else if (id == R.id.nav_breakfast) {
+            bundle.putString("category", "Breakfast & Dairy");
             fragment = new CategoryFragment();
+            fragment.setArguments(bundle);
         } else if (id == R.id.nav_grocery) {
+            bundle.putString("category", "Grocery & Staples");
             fragment = new CategoryFragment();
+            fragment.setArguments(bundle);
         } else if (id == R.id.nav_household) {
+            bundle.putString("category", "Household Needs");
             fragment = new CategoryFragment();
+            fragment.setArguments(bundle);
         } else if (id == R.id.nav_noodles) {
+            bundle.putString("category", "Instant Foods & Sauce");
             fragment = new CategoryFragment();
+            fragment.setArguments(bundle);
         } else if (id == R.id.nav_personal) {
+            bundle.putString("category", "Personal Care");
             fragment = new CategoryFragment();
+            fragment.setArguments(bundle);
         } else if (id == R.id.nav_vegetables) {
+            bundle.putString("category", "Vegetables & Fruits");
             fragment = new CategoryFragment();
+            fragment.setArguments(bundle);
         }
 
         if (fragment != null) {

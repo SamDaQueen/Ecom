@@ -26,8 +26,8 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 
 import static android.support.constraint.Constraints.TAG;
-import static com.android.ecom.Activities.ProductsActivity.updateTotal;
 import static com.android.ecom.Fragments.CartFragment.cart_list;
+import static com.android.ecom.Fragments.CategoryFragment.updateTotal;
 
 public class ProductAdapter extends ArrayAdapter<Product> {
 
