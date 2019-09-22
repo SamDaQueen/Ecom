@@ -8,50 +8,17 @@
     android:orientation="vertical"
     tools:context=".Fragments.HomeFragment">
 
-
-    <android.support.constraint.ConstraintLayout
+    <com.synnapps.carouselview.CarouselView
+        android:id="@+id/carouselView"
         android:layout_width="match_parent"
-        android:layout_height="180dp">
-
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/relax"
-            android:tint="#6F000000"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="Stay home and relax. We will deliver."
-            android:textColor="@android:color/white"
-            android:textSize="35sp"
-            app:layout_constraintEnd_toEndOf="@+id/imageView2"
-            app:layout_constraintStart_toStartOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="@+id/imageView2" />
-
-    </android.support.constraint.ConstraintLayout>
-
-
-    <GridView
-        android:id="@+id/home_grid"
-        android:padding="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:numColumns="auto_fit"
-        android:verticalSpacing="20dp"
-        android:horizontalSpacing="15dp"
-        android:stretchMode="columnWidth"
-        android:gravity="center"
-        tools:listitem="@layout/category_tile"        />
+        android:layout_height="200dp"
+        app:animateOnBoundary="false"
+        app:fillColor="#FFFFFFFF"
+        app:pageColor="#00000000"
+        app:radius="4dp"
+        app:slideInterval="5000"
+        app:strokeColor="#FF777777"
+        app:strokeWidth="1dp" />
 
 </LinearLayout>
 
