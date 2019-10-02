@@ -17,41 +17,41 @@
             android:title="@string/categories">
             <menu>
                 <item
-                    android:id="@+id/nav_baby"
-                    android:icon="@drawable/sippy_cup"
-                    android:title="@string/baby_amp_kids" />
-                <item
-                    android:id="@+id/nav_beverage"
+                    android:id="@+id/breakfast_and_tea"
                     android:icon="@drawable/hot_cup_of_coffee"
-                    android:title="@string/beverage_amp_cold_drinks" />
+                    android:title="@string/breakfast_and_tea" />
                 <item
                     android:id="@+id/nav_biscuits"
                     android:icon="@drawable/cookies"
                     android:title="@string/biscuits_amp_snacks" />
                 <item
-                    android:id="@+id/nav_breakfast"
-                    android:icon="@drawable/two_bread_toasts"
-                    android:title="@string/breakfast_amp_dairy" />
+                    android:id="@+id/nav_nuts"
+                    android:icon="@drawable/walnut"
+                    android:title="@string/dry_fruits" />
                 <item
-                    android:id="@+id/nav_grocery"
+                    android:id="@+id/nav_oils"
                     android:icon="@drawable/olive_oil_bottle"
-                    android:title="@string/grocery_amp_staples" />
+                    android:title="@string/edible_oil" />
                 <item
-                    android:id="@+id/nav_household"
-                    android:icon="@drawable/soap"
-                    android:title="@string/household_needs" />
+                    android:id="@+id/nav_food_grains"
+                    android:icon="@drawable/wheat"
+                    android:title="@string/food_grains" />
                 <item
                     android:id="@+id/nav_noodles"
                     android:icon="@drawable/ketchup"
                     android:title="@string/instant_foods_amp_sauce" />
                 <item
-                    android:id="@+id/nav_personal"
-                    android:icon="@drawable/beauty_products"
-                    android:title="@string/personal_care" />
+                    android:id="@+id/nav_household"
+                    android:icon="@drawable/soap"
+                    android:title="@string/household_needs" />
                 <item
-                    android:id="@+id/nav_vegetables"
+                    android:id="@+id/nav_veg"
                     android:icon="@drawable/apple"
                     android:title="@string/vegetables_amp_fruits" />
+                <item
+                    android:id="@+id/nav_spices"
+                    android:icon="@drawable/anise"
+                    android:title="@string/spices" />
             </menu>
         </item>
         <!-- TODO: Add history functionality -->

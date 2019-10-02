@@ -122,42 +122,42 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home)
             fragment = new HomeFragment();
-        else if (id == R.id.nav_cart)
+        else if (id == R.id.nav_cart) {
             fragment = new CartFragment();
-        else if (id == R.id.nav_baby) {
-            bundle.putString("category", "Baby & Kids");
-            fragment = new CategoryFragment();
-            fragment.setArguments(bundle);
-        } else if (id == R.id.nav_beverage) {
-            bundle.putString("category", "Beverage & Cold Drinks");
+        } else if (id == R.id.breakfast_and_tea) {
+            bundle.putString("category", "Breakfast & Tea");
             fragment = new CategoryFragment();
             fragment.setArguments(bundle);
         } else if (id == R.id.nav_biscuits) {
-            bundle.putString("category", "Biscuits & Snacks");
+            bundle.putString("category", "Biscuits, Snacks & Chocolates");
             fragment = new CategoryFragment();
             fragment.setArguments(bundle);
-        } else if (id == R.id.nav_breakfast) {
-            bundle.putString("category", "Breakfast & Dairy");
+        } else if (id == R.id.nav_nuts) {
+            bundle.putString("category", "Dry Fruits & Nuts");
             fragment = new CategoryFragment();
             fragment.setArguments(bundle);
-        } else if (id == R.id.nav_grocery) {
-            bundle.putString("category", "Grocery & Staples");
+        } else if (id == R.id.nav_oils) {
+            bundle.putString("category", "Edible Oils, Ghee & Vanaspati");
             fragment = new CategoryFragment();
             fragment.setArguments(bundle);
-        } else if (id == R.id.nav_household) {
-            bundle.putString("category", "Household Needs");
+        } else if (id == R.id.nav_food_grains) {
+            bundle.putString("category", "Food Grains");
             fragment = new CategoryFragment();
             fragment.setArguments(bundle);
         } else if (id == R.id.nav_noodles) {
-            bundle.putString("category", "Instant Foods & Sauce");
+            bundle.putString("category", "Noodles, Sauce & Instant Foods");
             fragment = new CategoryFragment();
             fragment.setArguments(bundle);
-        } else if (id == R.id.nav_personal) {
-            bundle.putString("category", "Personal Care");
+        } else if (id == R.id.nav_household) {
+            bundle.putString("category", "Personal Care & Household Needs");
             fragment = new CategoryFragment();
             fragment.setArguments(bundle);
-        } else if (id == R.id.nav_vegetables) {
+        } else if (id == R.id.nav_veg) {
             bundle.putString("category", "Vegetables & Fruits");
+            fragment = new CategoryFragment();
+            fragment.setArguments(bundle);
+        } else if (id == R.id.nav_spices) {
+            bundle.putString("category", "Spices");
             fragment = new CategoryFragment();
             fragment.setArguments(bundle);
         }

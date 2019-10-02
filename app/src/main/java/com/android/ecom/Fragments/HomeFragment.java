@@ -8,18 +8,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.LinearLayout;
 
 import com.android.ecom.Adapters.HomeTileAdapter;
-import com.android.ecom.Models.Category_Model;
+import com.android.ecom.Models.Product;
 import com.android.ecom.R;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.StorageReference;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
@@ -29,16 +29,14 @@ import java.util.Objects;
 import static com.android.ecom.Fragments.CartFragment.cart_list;
 
 public class HomeFragment extends Fragment {
-
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
+    //    DatabaseReference databaseReference;
     ChildEventListener childEventListener;
+    //    ArrayList<Product> arrayList;
     HomeTileAdapter homeTileAdapter;
-    ListView listView;
-    ArrayList<Category_Model> arrayList;
+    GridView gridView;
     CarouselView carouselView;
     int NUMBER_OF_PAGES = 5;
-    StorageReference storageReference;
     //String[] images = {"image_1", "image_2", "image_3", "image_4", "image_5"};
     int[] sampleImages = {R.drawable.image_1, R.drawable.image_2, R.drawable.image_3, R.drawable.image_4, R.drawable.image_5};
     ImageListener imageListener = new ImageListener() {
@@ -73,29 +71,39 @@ public class HomeFragment extends Fragment {
         carouselView = root.findViewById(R.id.carouselView);
         carouselView.setPageCount(NUMBER_OF_PAGES);
         carouselView.setImageListener(imageListener);
-        listView = root.findViewById(R.id.home_list);
-        arrayList = new ArrayList<>();
-        homeTileAdapter = new HomeTileAdapter(
-                getContext(), R.layout.home_tile, arrayList);
-        getFromRD(root);
-        listView.setAdapter(homeTileAdapter);
-    }
-
-    private void getFromRD(View root) {
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference().child("Categories");
-        attachDatabaseReadListener(root);
+
+        int gridIDBreakfast = R.id.breakfast_grid;
+        int gridIDBiscuit = R.id.biscuit_grid;
+
+        setUpGrid(root, gridIDBreakfast, "Edible Oils, Ghee, Vanaspati");
+        setUpGrid(root, gridIDBiscuit, "Edible Oils, Ghee, Vanaspati");
     }
 
-    private void attachDatabaseReadListener(final View root) {
+    private void setUpGrid(View root, int resID, String category) {
+
+        DatabaseReference databaseReference = firebaseDatabase.getReference().child(category);
+        gridView = root.findViewById(resID);
+        ArrayList<Product> arrayList = new ArrayList<>();
+        homeTileAdapter = new HomeTileAdapter(
+                getContext(), R.layout.home_page_product_tile, arrayList);
+        getFromRD(databaseReference);
+        gridView.setNumColumns(7);
+        LinearLayout.LayoutParams lp =
+                new LinearLayout.LayoutParams(2000, ViewGroup.LayoutParams.MATCH_PARENT);
+        gridView.setLayoutParams(lp);
+        gridView.setAdapter(homeTileAdapter);
+    }
+
+    private void getFromRD(DatabaseReference databaseReference) {
         if (childEventListener == null) {
             childEventListener = new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    Category_Model category_model = dataSnapshot.getValue(Category_Model.class);
+                    Product product = dataSnapshot.getValue(Product.class);
                     Log.d("success", "onChildAdded: "
-                            + category_model.getId() + category_model.getName());
-                    homeTileAdapter.add(category_model);
+                            + product.getId() + product.getName() + product.getPhoto());
+                    homeTileAdapter.add(product);
                 }
 
                 @Override

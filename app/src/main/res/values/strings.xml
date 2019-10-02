@@ -16,13 +16,14 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="communicate">Communicate</string>
     <string name="categories">Categories</string>
-    <string name="baby_amp_kids"><![CDATA[Baby & Kids]]></string>
-    <string name="beverage_amp_cold_drinks"><![CDATA[Beverage & Cold Drinks]]></string>
+    <string name="breakfast_and_tea"><![CDATA[Breakfast & Tea]]></string>
     <string name="biscuits_amp_snacks"><![CDATA[Biscuits & Snacks]]></string>
-    <string name="breakfast_amp_dairy"><![CDATA[Breakfast & Dairy]]></string>
-    <string name="grocery_amp_staples"><![CDATA[Grocery & Staples]]></string>
-    <string name="household_needs">Household Needs</string>
+    <string name="food_grains"><![CDATA[Food Grains]]></string>
+    <string name="household_needs"><![CDATA[Personal Care & Household Needs]]></string>
     <string name="instant_foods_amp_sauce"><![CDATA[Instant Foods & Sauce]]></string>
-    <string name="personal_care">Personal Care</string>
     <string name="vegetables_amp_fruits"><![CDATA[Vegetables & Fruits]]></string>
+    <string name="edible_oil"><![CDATA[Edible Oils, Ghee & Vanaspati]]></string>
+    <string name="dry_fruits"><![CDATA[Dry Fruits & Nuts]]></string>
+    <string name="spices">Spices</string>
+
 </resources>
