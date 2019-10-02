@@ -20,6 +20,15 @@
         app:strokeColor="#FF777777"
         app:strokeWidth="1dp" />
 
+    <ListView
+        android:id="@+id/home_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:divider="@color/defaultTextColor"
+        android:dividerHeight="5dp"
+        tools:listitem="@layout/home_tile" />
+
 </LinearLayout>
 
 

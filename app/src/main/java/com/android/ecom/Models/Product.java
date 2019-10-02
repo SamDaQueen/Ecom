@@ -5,21 +5,42 @@ import android.os.Parcelable;
 
 public class Product implements Parcelable {
 
-    private int id;
+    public static final Creator<Product> CREATOR = new Creator<Product>() {
+        @Override
+        public Product createFromParcel(Parcel in) {
+            return new Product(in);
+        }
+
+        @Override
+        public Product[] newArray(int size) {
+            return new Product[size];
+        }
+    };
     private String name;
     private String size;
     private float MRP;
     private float price;
     private int quantity;
     private String photo;
+    private String id;
 
-    public Product(int id, String name, String size, float MRP, float price, String photo) {
+    public Product(String id, String name, String size, float MRP, float price, String photo) {
         this.id = id;
         this.name = name;
         this.size = size;
         this.MRP = MRP;
         this.price = price;
         this.photo = photo;
+    }
+
+    private Product(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        size = in.readString();
+        MRP = in.readFloat();
+        price = in.readFloat();
+        quantity = in.readInt();
+        photo = in.readString();
     }
 
     public String getPhoto() {
@@ -33,11 +54,11 @@ public class Product implements Parcelable {
         this.photo = photo;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -88,6 +109,12 @@ public class Product implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-
+        parcel.writeString(id);
+        parcel.writeString(name);
+        parcel.writeString(size);
+        parcel.writeFloat(MRP);
+        parcel.writeFloat(price);
+        parcel.writeInt(quantity);
+        parcel.writeString(photo);
     }
 }

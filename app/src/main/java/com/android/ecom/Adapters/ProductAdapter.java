@@ -31,7 +31,7 @@ import static com.android.ecom.Fragments.CategoryFragment.updateTotal;
 
 public class ProductAdapter extends ArrayAdapter<Product> {
 
-    StorageReference storageReference;
+    private StorageReference storageReference;
 
     public ProductAdapter(Context context, int resource, ArrayList<Product> objects) {
         super(context, resource, objects);
