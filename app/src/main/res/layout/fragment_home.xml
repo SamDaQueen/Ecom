@@ -26,124 +26,249 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp">
+        <android.support.v7.widget.CardView style="@style/home_card">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:orientation="vertical">
+            <LinearLayout style="@style/home_linear">
 
-                <TextView
-                    android:id="@+id/breakfast_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"
-                    android:text="Category" />
+                <View style="@style/home_view" />
 
-                <HorizontalScrollView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fillViewport="true"
-                    android:scrollbars="horizontal">
+                <LinearLayout style="@style/home_ribbon">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/breakfast_text"
+                        style="@style/home_text"
+                        android:text="@string/edible_oil" />
 
-                        <GridView
-                            android:id="@+id/breakfast_grid"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:horizontalSpacing="15dp"
-                            tools:listitem="@layout/home_page_product_tile" />
-                    </LinearLayout>
-                </HorizontalScrollView>
+                    <Button
+                        android:id="@+id/breakfast_shop_button"
+                        style="@style/home_button" />
+                </LinearLayout>
 
-                <Button
-                    android:id="@+id/breakfast_shop_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:text="Shop"
-                    android:textColor="@color/defaultTextColor" />
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
+                <View style="@style/home_view" />
 
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/biscuit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"
-                    android:text="Category" />
-
-                <GridView
-                    android:id="@+id/biscuit_grid"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/breakfast_grid"
+                    style="@style/home_recycler"
                     tools:listitem="@layout/home_page_product_tile" />
-
-                <Button
-                    android:id="@+id/biscuit_shop_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:text="Shop"
-                    android:textColor="@color/defaultTextColor" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
-        <!--<include-->
-        <!--android:id="@+id/biscuit_view"-->
-        <!--layout="@layout/home_tile" />-->
+        <android.support.v7.widget.CardView style="@style/home_card">
 
-        <!--<include-->
-        <!--android:id="@+id/nuts_view"-->
-        <!--layout="@layout/home_tile" />-->
+            <LinearLayout style="@style/home_linear">
 
-        <!--<include-->
-        <!--android:id="@+id/oils_view"-->
-        <!--layout="@layout/home_tile" />-->
+                <View style="@style/home_view" />
 
-        <!--<include-->
-        <!--android:id="@+id/food_grains_view"-->
-        <!--layout="@layout/home_tile" />-->
+                <LinearLayout style="@style/home_ribbon">
 
-        <!--<include-->
-        <!--android:id="@+id/noodles_view"-->
-        <!--layout="@layout/home_tile" />-->
+                    <TextView
+                        android:id="@+id/biscuit_text"
+                        style="@style/home_text"
+                        android:text="@string/edible_oil" />
 
-        <!--<include-->
-        <!--android:id="@+id/household_view"-->
-        <!--layout="@layout/home_tile" />-->
+                    <Button
+                        android:id="@+id/biscuit_shop_button"
+                        style="@style/home_button" />
+                </LinearLayout>
 
-        <!--<include-->
-        <!--android:id="@+id/veg_view"-->
-        <!--layout="@layout/home_tile" />-->
+                <View style="@style/home_view" />
 
-        <!--<include-->
-        <!--android:id="@+id/spices_view"-->
-        <!--layout="@layout/home_tile" />-->
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/biscuit_grid"
+                    style="@style/home_recycler"
+                    tools:listitem="@layout/home_page_product_tile" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView style="@style/home_card">
+
+            <LinearLayout style="@style/home_linear">
+
+                <View style="@style/home_view" />
+
+                <LinearLayout style="@style/home_ribbon">
+
+                    <TextView
+                        android:id="@+id/nuts_text"
+                        style="@style/home_text"
+                        android:text="@string/edible_oil" />
+
+                    <Button
+                        android:id="@+id/nuts_shop_button"
+                        style="@style/home_button" />
+                </LinearLayout>
+
+                <View style="@style/home_view" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/nuts_grid"
+                    style="@style/home_recycler"
+                    tools:listitem="@layout/home_page_product_tile" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView style="@style/home_card">
+
+            <LinearLayout style="@style/home_linear">
+
+                <View style="@style/home_view" />
+
+                <LinearLayout style="@style/home_ribbon">
+
+                    <TextView
+                        android:id="@+id/oils_text"
+                        style="@style/home_text"
+                        android:text="@string/edible_oil" />
+
+                    <Button
+                        android:id="@+id/oils_shop_button"
+                        style="@style/home_button" />
+                </LinearLayout>
+
+                <View style="@style/home_view" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/oils_grid"
+                    style="@style/home_recycler"
+                    tools:listitem="@layout/home_page_product_tile" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView style="@style/home_card">
+
+            <LinearLayout style="@style/home_linear">
+
+                <View style="@style/home_view" />
+
+                <LinearLayout style="@style/home_ribbon">
+
+                    <TextView
+                        android:id="@+id/grains_text"
+                        style="@style/home_text"
+                        android:text="@string/edible_oil" />
+
+                    <Button
+                        android:id="@+id/grains_shop_button"
+                        style="@style/home_button" />
+                </LinearLayout>
+
+                <View style="@style/home_view" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/grains_grid"
+                    style="@style/home_recycler"
+                    tools:listitem="@layout/home_page_product_tile" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView style="@style/home_card">
+
+            <LinearLayout style="@style/home_linear">
+
+                <View style="@style/home_view" />
+
+                <LinearLayout style="@style/home_ribbon">
+
+                    <TextView
+                        android:id="@+id/noodles_text"
+                        style="@style/home_text"
+                        android:text="@string/edible_oil" />
+
+                    <Button
+                        android:id="@+id/noodles_shop_button"
+                        style="@style/home_button" />
+                </LinearLayout>
+
+                <View style="@style/home_view" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/noodles_grid"
+                    style="@style/home_recycler"
+                    tools:listitem="@layout/home_page_product_tile" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView style="@style/home_card">
+
+            <LinearLayout style="@style/home_linear">
+
+                <View style="@style/home_view" />
+
+                <LinearLayout style="@style/home_ribbon">
+
+                    <TextView
+                        android:id="@+id/household_text"
+                        style="@style/home_text"
+                        android:text="@string/edible_oil" />
+
+                    <Button
+                        android:id="@+id/household_shop_button"
+                        style="@style/home_button" />
+                </LinearLayout>
+
+                <View style="@style/home_view" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/household_grid"
+                    style="@style/home_recycler"
+                    tools:listitem="@layout/home_page_product_tile" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView style="@style/home_card">
+
+            <LinearLayout style="@style/home_linear">
+
+                <View style="@style/home_view" />
+
+                <LinearLayout style="@style/home_ribbon">
+
+                    <TextView
+                        android:id="@+id/veg_text"
+                        style="@style/home_text"
+                        android:text="@string/edible_oil" />
+
+                    <Button
+                        android:id="@+id/veg_shop_button"
+                        style="@style/home_button" />
+                </LinearLayout>
+
+                <View style="@style/home_view" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/veg_grid"
+                    style="@style/home_recycler"
+                    tools:listitem="@layout/home_page_product_tile" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView style="@style/home_card">
+
+            <LinearLayout style="@style/home_linear">
+
+                <View style="@style/home_view" />
+
+                <LinearLayout style="@style/home_ribbon">
+
+                    <TextView
+                        android:id="@+id/spices_text"
+                        style="@style/home_text"
+                        android:text="@string/edible_oil" />
+
+                    <Button
+                        android:id="@+id/spices_shop_button"
+                        style="@style/home_button" />
+                </LinearLayout>
+
+                <View style="@style/home_view" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/spices_grid"
+                    style="@style/home_recycler"
+                    tools:listitem="@layout/home_page_product_tile" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
     </LinearLayout>
 
 </LinearLayout>
-

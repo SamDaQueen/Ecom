@@ -4,13 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.android.ecom.Adapters.HomeTileAdapter;
 import com.android.ecom.Models.Product;
@@ -24,6 +24,7 @@ import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import static com.android.ecom.Fragments.CartFragment.cart_list;
@@ -34,8 +35,9 @@ public class HomeFragment extends Fragment {
     ChildEventListener childEventListener;
     //    ArrayList<Product> arrayList;
     HomeTileAdapter homeTileAdapter;
-    GridView gridView;
+    RecyclerView recyclerView;
     CarouselView carouselView;
+    List<Product> list = new ArrayList<>();
     int NUMBER_OF_PAGES = 5;
     //String[] images = {"image_1", "image_2", "image_3", "image_4", "image_5"};
     int[] sampleImages = {R.drawable.image_1, R.drawable.image_2, R.drawable.image_3, R.drawable.image_4, R.drawable.image_5};
@@ -74,25 +76,23 @@ public class HomeFragment extends Fragment {
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         int gridIDBreakfast = R.id.breakfast_grid;
-        int gridIDBiscuit = R.id.biscuit_grid;
 
         setUpGrid(root, gridIDBreakfast, "Edible Oils, Ghee, Vanaspati");
-        setUpGrid(root, gridIDBiscuit, "Edible Oils, Ghee, Vanaspati");
     }
 
     private void setUpGrid(View root, int resID, String category) {
 
         DatabaseReference databaseReference = firebaseDatabase.getReference().child(category);
-        gridView = root.findViewById(resID);
-        ArrayList<Product> arrayList = new ArrayList<>();
-        homeTileAdapter = new HomeTileAdapter(
-                getContext(), R.layout.home_page_product_tile, arrayList);
+        recyclerView = root.findViewById(resID);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        homeTileAdapter = new HomeTileAdapter(getActivity(), list);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(homeTileAdapter);
         getFromRD(databaseReference);
-        gridView.setNumColumns(7);
-        LinearLayout.LayoutParams lp =
-                new LinearLayout.LayoutParams(2000, ViewGroup.LayoutParams.MATCH_PARENT);
-        gridView.setLayoutParams(lp);
-        gridView.setAdapter(homeTileAdapter);
+
+
     }
 
     private void getFromRD(DatabaseReference databaseReference) {
@@ -103,7 +103,9 @@ public class HomeFragment extends Fragment {
                     Product product = dataSnapshot.getValue(Product.class);
                     Log.d("success", "onChildAdded: "
                             + product.getId() + product.getName() + product.getPhoto());
-                    homeTileAdapter.add(product);
+                    list.add(product);
+                    homeTileAdapter.notifyDataSetChanged();
+                    Log.d("size", "onChildAdded: " + homeTileAdapter.getItemCount());
                 }
 
                 @Override
@@ -123,7 +125,9 @@ public class HomeFragment extends Fragment {
                 }
             };
             databaseReference.addChildEventListener(childEventListener);
+            Log.d("new size", "getFromRD: " + homeTileAdapter.getItemCount());
         }
+
     }
 
 //

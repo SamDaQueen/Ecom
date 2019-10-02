@@ -34,4 +34,58 @@
         <item name="android:textSize">25sp</item>
     </style>
 
+    <style name="home_card">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:elevation">5dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+    </style>
+
+    <style name="home_linear">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="home_view">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@android:color/darker_gray</item>
+    </style>
+
+    <style name="home_ribbon">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="home_text">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Subtitle1
+        </item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">3</item>
+    </style>
+
+    <style name="home_button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:backgroundTint">@color/colorPrimary</item>
+        <item name="android:text">Shop</item>
+        <item name="android:textColor">@color/defaultTextColor</item>
+    </style>
+
+    <style name="home_recycler">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+    </style>
+
+
 </resources>
