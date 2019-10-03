@@ -46,7 +46,7 @@ public class CartAdapter extends ArrayAdapter<Product> {
         TextView name = convertView.findViewById(R.id.product_name);
         TextView size = convertView.findViewById(R.id.product_size);
         TextView MRP = convertView.findViewById(R.id.product_MRP);
-        TextView price = convertView.findViewById(R.id.product_price);
+        final TextView price = convertView.findViewById(R.id.product_price);
         final TextView quantity = convertView.findViewById(R.id.quantity);
         Button increment = convertView.findViewById(R.id.increment);
         final Button decrement = convertView.findViewById(R.id.decrement);
@@ -58,7 +58,7 @@ public class CartAdapter extends ArrayAdapter<Product> {
             name.setText(product.getName());
             size.setText(String.format("Quantity: %s", product.getSize()));
             MRP.setText(String.format("MRP: %s", String.valueOf(product.getMRP())));
-            price.setText(String.format("Total:%s", String.valueOf(product.getPrice() * product.getQuantity())));
+            price.setText(String.format("Our price:%s", String.valueOf(product.getPrice())));
             quantity.setText(String.valueOf(product.getQuantity()));
             storageReference = FirebaseStorage.getInstance().getReferenceFromUrl("gs://ecom-8af80.appspot.com");
             if (product.getPhoto() == null)
@@ -108,12 +108,15 @@ public class CartAdapter extends ArrayAdapter<Product> {
                 @Override
                 public void onClick(View view) {
                     int count = Integer.parseInt(quantity.getText().toString());
-                    if (count > 0) {
+                    if (count > 1) {
                         count--;
                         quantity.setText(String.valueOf(count));
+                        product.setQuantity(count);
                         CartFragment.total -= Float.parseFloat(String.valueOf(product.getPrice()));
                         updateCartTotal();
                     } else {
+                        CartFragment.total -= Float.parseFloat(String.valueOf(product.getPrice()));
+                        product.setQuantity(0);
                         cart_list.remove(product);
                         CartFragment.updateList();
                         updateCartTotal();

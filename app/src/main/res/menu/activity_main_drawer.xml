@@ -60,14 +60,14 @@
         <!--android:icon="@drawable/ic_menu_manage"-->
         <!--android:title="@string/menu_history" />-->
 
-        <item android:title="@string/communicate">
-            <menu>
-                <item
-                    android:id="@+id/nav_share"
-                    android:icon="@drawable/ic_menu_share"
-                    android:title="@string/menu_share" />
-            </menu>
-        </item>
+        <!--<item android:title="@string/communicate">-->
+        <!--<menu>-->
+        <!--<item-->
+        <!--android:id="@+id/nav_share"-->
+        <!--android:icon="@drawable/ic_menu_share"-->
+        <!--android:title="@string/menu_share" />-->
+        <!--</menu>-->
+        <!--</item>-->
     </group>
 
 </menu>

@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.android.ecom.Adapters.HomeTileAdapter;
@@ -24,20 +26,21 @@ import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import static com.android.ecom.Fragments.CartFragment.cart_list;
 
 public class HomeFragment extends Fragment {
     FirebaseDatabase firebaseDatabase;
-    //    DatabaseReference databaseReference;
-    ChildEventListener childEventListener;
-    //    ArrayList<Product> arrayList;
-    HomeTileAdapter homeTileAdapter;
-    RecyclerView recyclerView;
+    DatabaseReference databaseReference;
+    DatabaseReference[] groupDatabaseReferences;
+    ChildEventListener[] childEventListeners;
+    HomeTileAdapter[] homeTileAdapters;
+    RecyclerView[] recyclerViews;
+    LinearLayoutManager[] managers;
     CarouselView carouselView;
-    List<Product> list = new ArrayList<>();
+    ArrayList<Product>[] lists;
+    Button[] shopButtons;
     int NUMBER_OF_PAGES = 5;
     //String[] images = {"image_1", "image_2", "image_3", "image_4", "image_5"};
     int[] sampleImages = {R.drawable.image_1, R.drawable.image_2, R.drawable.image_3, R.drawable.image_4, R.drawable.image_5};
@@ -73,39 +76,71 @@ public class HomeFragment extends Fragment {
         carouselView = root.findViewById(R.id.carouselView);
         carouselView.setPageCount(NUMBER_OF_PAGES);
         carouselView.setImageListener(imageListener);
+
         firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+        final String[] categories = {"Breakfast & Tea", "Biscuits, Snacks & Chocolates"
+                , "Dry Fruits & Nuts", "Edible Oils & Vanaspati", "Food Grains"
+                , "Noodles, Sauces & Instant Food", "Personal Care & Household Needs"
+                , "Vegetables & Fruits", "Spices"};
+        int[] resID = {R.id.breakfast_grid, R.id.biscuit_grid, R.id.nuts_grid, R.id.oils_grid
+                , R.id.grains_grid, R.id.noodles_grid, R.id.household_grid
+                , R.id.veg_grid, R.id.spices_grid};
+        int[] button_ID = {R.id.breakfast_shop_button, R.id.biscuit_shop_button
+                , R.id.nuts_shop_button, R.id.oils_shop_button, R.id.grains_shop_button
+                , R.id.noodles_shop_button, R.id.household_shop_button
+                , R.id.veg_shop_button, R.id.spices_shop_button};
 
-        int gridIDBreakfast = R.id.breakfast_grid;
+        shopButtons = new Button[resID.length];
+        groupDatabaseReferences = new DatabaseReference[resID.length];
+        recyclerViews = new RecyclerView[resID.length];
+        homeTileAdapters = new HomeTileAdapter[resID.length];
+        managers = new LinearLayoutManager[resID.length];
+        childEventListeners = new ChildEventListener[resID.length];
+        lists = (ArrayList<Product>[]) new ArrayList[(resID.length)];
+        for (int i = 0; i < resID.length; i++) {
+            final int c = i;
+            shopButtons[i] = root.findViewById(button_ID[i]);
+            shopButtons[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("category", categories[c]);
+                    Fragment fragment = new CategoryFragment();
+                    fragment.setArguments(bundle);
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.content_frame, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
+            });
+            Log.d("Home", "setUpView: " + categories[i]);
+            groupDatabaseReferences[i] = databaseReference.child(categories[i]);
+            recyclerViews[i] = root.findViewById(resID[i]);
+            lists[i] = new ArrayList<>();
+            homeTileAdapters[i] = new HomeTileAdapter(getActivity(), lists[i]);
+            managers[i] = new LinearLayoutManager(getActivity());
+            managers[i].setOrientation(LinearLayoutManager.HORIZONTAL);
+            setUpGrid(i);
+        }
 
-        setUpGrid(root, gridIDBreakfast, "Edible Oils, Ghee, Vanaspati");
     }
 
-    private void setUpGrid(View root, int resID, String category) {
-
-        DatabaseReference databaseReference = firebaseDatabase.getReference().child(category);
-        recyclerView = root.findViewById(resID);
-        recyclerView.setHasFixedSize(true);
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
-        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        homeTileAdapter = new HomeTileAdapter(getActivity(), list);
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(homeTileAdapter);
-        getFromRD(databaseReference);
-
-
+    private void setUpGrid(int i) {
+        recyclerViews[i].setHasFixedSize(true);
+        recyclerViews[i].setLayoutManager(managers[i]);
+        recyclerViews[i].setAdapter(homeTileAdapters[i]);
+        getFromRD(i);
     }
 
-    private void getFromRD(DatabaseReference databaseReference) {
-        if (childEventListener == null) {
-            childEventListener = new ChildEventListener() {
+    private void getFromRD(final int i) {
+        if (childEventListeners[i] == null) {
+            childEventListeners[i] = new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     Product product = dataSnapshot.getValue(Product.class);
-                    Log.d("success", "onChildAdded: "
-                            + product.getId() + product.getName() + product.getPhoto());
-                    list.add(product);
-                    homeTileAdapter.notifyDataSetChanged();
-                    Log.d("size", "onChildAdded: " + homeTileAdapter.getItemCount());
+                    lists[i].add(product);
+                    homeTileAdapters[i].notifyDataSetChanged();
                 }
 
                 @Override
@@ -124,8 +159,7 @@ public class HomeFragment extends Fragment {
                 public void onCancelled(DatabaseError databaseError) {
                 }
             };
-            databaseReference.addChildEventListener(childEventListener);
-            Log.d("new size", "getFromRD: " + homeTileAdapter.getItemCount());
+            groupDatabaseReferences[i].addChildEventListener(childEventListeners[i]);
         }
 
     }
