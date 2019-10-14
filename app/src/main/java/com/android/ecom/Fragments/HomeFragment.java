@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import com.android.ecom.Adapters.HomeTileAdapter;
 import com.android.ecom.Models.Product;
@@ -22,8 +21,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.synnapps.carouselview.CarouselView;
-import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -38,18 +35,18 @@ public class HomeFragment extends Fragment {
     HomeTileAdapter[] homeTileAdapters;
     RecyclerView[] recyclerViews;
     LinearLayoutManager[] managers;
-    CarouselView carouselView;
+    //    CarouselView carouselView;
     ArrayList<Product>[] lists;
     Button[] shopButtons;
     int NUMBER_OF_PAGES = 5;
     //String[] images = {"image_1", "image_2", "image_3", "image_4", "image_5"};
-    int[] sampleImages = {R.drawable.image_1, R.drawable.image_2, R.drawable.image_3, R.drawable.image_4, R.drawable.image_5};
-    ImageListener imageListener = new ImageListener() {
-        @Override
-        public void setImageForPosition(int position, ImageView imageView) {
-            imageView.setImageResource(sampleImages[position]);
-        }
-    };
+//    int[] sampleImages = {R.drawable.image_1, R.drawable.image_2, R.drawable.image_3, R.drawable.image_4, R.drawable.image_5};
+////    ImageListener imageListener = new ImageListener() {
+////        @Override
+////        public void setImageForPosition(int position, ImageView imageView) {
+//            imageView.setImageResource(sampleImages[position]);
+//        }
+//    };
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -73,9 +70,9 @@ public class HomeFragment extends Fragment {
     }
 
     private void setUpView(View root) {
-        carouselView = root.findViewById(R.id.carouselView);
-        carouselView.setPageCount(NUMBER_OF_PAGES);
-        carouselView.setImageListener(imageListener);
+//        carouselView = root.findViewById(R.id.carouselView);
+//        carouselView.setPageCount(NUMBER_OF_PAGES);
+//        carouselView.setImageListener(imageListener);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
