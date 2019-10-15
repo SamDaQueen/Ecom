@@ -1,4 +1,4 @@
-package com.android.ecom.Adapters;
+package com.mohallab.ecom.Adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

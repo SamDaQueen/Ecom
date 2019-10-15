@@ -1,4 +1,4 @@
-package com.android.ecom.Emailer;
+package com.mohallab.ecom.Emailer;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -25,7 +25,7 @@ import javax.mail.internet.MimeMultipart;
 public class GmailSender extends javax.mail.Authenticator {
 
     static {
-        Security.addProvider(new com.android.ecom.Emailer.JSSEProvider());
+        Security.addProvider(new JSSEProvider());
     }
 
     private String mailhost = "smtp.gmail.com";

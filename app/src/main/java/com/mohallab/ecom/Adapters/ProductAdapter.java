@@ -1,4 +1,4 @@
-package com.android.ecom.Adapters;
+package com.mohallab.ecom.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,20 +14,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.ecom.Fragments.CartFragment;
-import com.android.ecom.Models.Product;
 import com.android.ecom.R;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.mohallab.ecom.Fragments.CartFragment;
+import com.mohallab.ecom.Models.Product;
 
 import java.util.ArrayList;
 
 import static android.support.constraint.Constraints.TAG;
-import static com.android.ecom.Fragments.CartFragment.cart_list;
-import static com.android.ecom.Fragments.CategoryFragment.updateTotal;
+import static com.mohallab.ecom.Fragments.CategoryFragment.updateTotal;
 
 public class ProductAdapter extends ArrayAdapter<Product> {
 
@@ -98,8 +97,8 @@ public class ProductAdapter extends ArrayAdapter<Product> {
                         quantity.setText(String.valueOf(count));
                         decrement.setEnabled(true);
                         product.setQuantity(count);
-                        if (!cart_list.contains(product)) {
-                            cart_list.add(product);
+                        if (!CartFragment.cart_list.contains(product)) {
+                            CartFragment.cart_list.add(product);
                         }
                         CartFragment.total += Float.parseFloat(String.valueOf(product.getPrice()));
                         updateTotal();

@@ -1,4 +1,4 @@
-package com.android.ecom.Fragments;
+package com.mohallab.ecom.Fragments;
 
 
 import android.content.Context;
@@ -21,10 +21,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.ecom.Adapters.CartAdapter;
-import com.android.ecom.Emailer.GmailSender;
-import com.android.ecom.Models.Product;
 import com.android.ecom.R;
+import com.mohallab.ecom.Adapters.CartAdapter;
+import com.mohallab.ecom.Emailer.GmailSender;
+import com.mohallab.ecom.Models.Product;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -81,7 +81,10 @@ public class CartFragment extends Fragment {
         placeOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getUserDetails(view);
+                if (cartAdapter.isEmpty())
+                    Toast.makeText(getActivity(), "Cart is Empty!", Toast.LENGTH_LONG).show();
+                else
+                    getUserDetails(view);
             }
         });
 

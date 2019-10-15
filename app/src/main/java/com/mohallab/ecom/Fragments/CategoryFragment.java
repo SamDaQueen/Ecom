@@ -1,4 +1,4 @@
-package com.android.ecom.Fragments;
+package com.mohallab.ecom.Fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,20 +13,17 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.ecom.Adapters.ProductAdapter;
-import com.android.ecom.Models.Product;
 import com.android.ecom.R;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.mohallab.ecom.Adapters.ProductAdapter;
+import com.mohallab.ecom.Models.Product;
 
 import java.util.ArrayList;
 import java.util.Objects;
-
-import static com.android.ecom.Fragments.CartFragment.cart_list;
-import static com.android.ecom.Fragments.CartFragment.total;
 
 public class CategoryFragment extends Fragment {
 
@@ -44,7 +41,7 @@ public class CategoryFragment extends Fragment {
     }
 
     public static void updateTotal() {
-        total_text.setText(String.format("Total: \u20B9 %s", String.valueOf(total)));
+        total_text.setText(String.format("Total: \u20B9 %s", String.valueOf(CartFragment.total)));
     }
 
     @Override
@@ -73,7 +70,7 @@ public class CategoryFragment extends Fragment {
         getFromRD();
         listView.setAdapter(productAdapter);
         total_text = root.findViewById(R.id.total_view);
-        total_text.setText(String.format("Total: \u20B9 %s", String.valueOf(total)));
+        total_text.setText(String.format("Total: \u20B9 %s", String.valueOf(CartFragment.total)));
 
         goToCart = root.findViewById(R.id.go_to_cart);
         goToCart.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +100,7 @@ public class CategoryFragment extends Fragment {
                     Log.d("success", "onChildAdded: "
                             + product.getId() + product.getName() + product.getSize()
                             + product.getMRP() + product.getPrice());
-                    if (!cart_list.contains(product))
+                    if (!CartFragment.cart_list.contains(product))
                         productAdapter.add(product);
                 }
 

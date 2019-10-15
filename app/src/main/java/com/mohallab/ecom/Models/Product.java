@@ -1,4 +1,4 @@
-package com.android.ecom.Models;
+package com.mohallab.ecom.Models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

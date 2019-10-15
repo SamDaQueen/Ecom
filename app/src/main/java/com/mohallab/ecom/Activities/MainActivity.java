@@ -1,4 +1,4 @@
-package com.android.ecom.Activities;
+package com.mohallab.ecom.Activities;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,18 +14,16 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.android.ecom.Databases.SPManager;
-import com.android.ecom.Fragments.CartFragment;
-import com.android.ecom.Fragments.CategoryFragment;
-import com.android.ecom.Fragments.HomeFragment;
 import com.android.ecom.R;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.mohallab.ecom.Databases.SPManager;
+import com.mohallab.ecom.Fragments.CartFragment;
+import com.mohallab.ecom.Fragments.CategoryFragment;
+import com.mohallab.ecom.Fragments.HomeFragment;
 
 import java.util.Arrays;
-
-import static com.android.ecom.Fragments.CartFragment.cart_list;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -62,7 +60,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
         } else {
             Log.i(TAG, "onRestoreInstanceState");
-            cart_list = savedInstanceState.getParcelableArrayList("cart");
+            CartFragment.cart_list = savedInstanceState.getParcelableArrayList("cart");
         }
 
         String fragment = getIntent().getStringExtra("fragment");
@@ -177,7 +175,7 @@ public class MainActivity extends AppCompatActivity
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         Log.i(TAG, "onSaveInstanceState");
-        outState.putParcelableArrayList("cart", cart_list);
+        outState.putParcelableArrayList("cart", CartFragment.cart_list);
     }
 
     @Override

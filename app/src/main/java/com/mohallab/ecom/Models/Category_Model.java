@@ -1,4 +1,4 @@
-package com.android.ecom.Models;
+package com.mohallab.ecom.Models;
 
 public class Category_Model {
 

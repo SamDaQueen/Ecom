@@ -1,4 +1,4 @@
-package com.android.ecom.Fragments;
+package com.mohallab.ecom.Fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,19 +13,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.android.ecom.Adapters.HomeTileAdapter;
-import com.android.ecom.Models.Product;
 import com.android.ecom.R;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.mohallab.ecom.Adapters.HomeTileAdapter;
+import com.mohallab.ecom.Models.Product;
 
 import java.util.ArrayList;
 import java.util.Objects;
-
-import static com.android.ecom.Fragments.CartFragment.cart_list;
 
 public class HomeFragment extends Fragment {
     FirebaseDatabase firebaseDatabase;
@@ -65,7 +63,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //you can set the title for your toolbar here for different fragments different titles
-        cart_list = new ArrayList<>();
+        CartFragment.cart_list = new ArrayList<>();
         Objects.requireNonNull(getActivity()).setTitle("Home");
     }
 

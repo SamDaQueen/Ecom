@@ -1,4 +1,4 @@
-package com.android.ecom.Emailer;
+package com.mohallab.ecom.Emailer;
 
 import java.security.AccessController;
 import java.security.Provider;

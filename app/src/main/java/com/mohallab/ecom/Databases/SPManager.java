@@ -1,4 +1,4 @@
-package com.android.ecom.Databases;
+package com.mohallab.ecom.Databases;
 
 import android.content.Context;
 import android.content.SharedPreferences;
