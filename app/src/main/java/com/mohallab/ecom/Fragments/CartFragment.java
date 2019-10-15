@@ -21,10 +21,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.ecom.R;
 import com.mohallab.ecom.Adapters.CartAdapter;
 import com.mohallab.ecom.Emailer.GmailSender;
 import com.mohallab.ecom.Models.Product;
+import com.mohallab.ecom.R;
 
 import java.util.ArrayList;
 import java.util.Objects;

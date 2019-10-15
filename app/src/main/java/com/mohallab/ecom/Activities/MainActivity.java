@@ -14,7 +14,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.android.ecom.R;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,6 +21,7 @@ import com.mohallab.ecom.Databases.SPManager;
 import com.mohallab.ecom.Fragments.CartFragment;
 import com.mohallab.ecom.Fragments.CategoryFragment;
 import com.mohallab.ecom.Fragments.HomeFragment;
+import com.mohallab.ecom.R;
 
 import java.util.Arrays;
 

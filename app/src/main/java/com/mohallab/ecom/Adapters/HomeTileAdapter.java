@@ -7,8 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.ecom.R;
 import com.mohallab.ecom.Models.Product;
+import com.mohallab.ecom.R;
 
 import java.util.ArrayList;
 import java.util.List;

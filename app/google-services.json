@@ -42,6 +42,43 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88878040195:android:266f1838d84464ae9907b6",
+        "android_client_info": {
+          "package_name": "com.mohallab.ecom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "88878040195-lv97blshd7q61sva1c6ejrtu4r3247hr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mohallab.ecom",
+            "certificate_hash": "ab83d4016439bd65f017f12ab280cc4d8275cf6e"
+          }
+        },
+        {
+          "client_id": "88878040195-27ognfuons8o2ms905e5lq5juon1gtv3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1kAkZx4n90b3bvpZHUdtzn_an4LW-sb0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "88878040195-27ognfuons8o2ms905e5lq5juon1gtv3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

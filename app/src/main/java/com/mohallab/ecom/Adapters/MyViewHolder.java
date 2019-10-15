@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.ecom.R;
+import com.mohallab.ecom.R;
 
 public class MyViewHolder extends RecyclerView.ViewHolder {
 

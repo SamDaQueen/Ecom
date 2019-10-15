@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.ecom">
+    package="com.mohallab.ecom">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/timevan"
+        android:icon="@mipmap/mb_logo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/timevan"
+        android:roundIcon="@mipmap/mb_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 

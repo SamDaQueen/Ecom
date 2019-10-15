@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.android.ecom.R;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mohallab.ecom.Adapters.HomeTileAdapter;
 import com.mohallab.ecom.Models.Product;
+import com.mohallab.ecom.R;
 
 import java.util.ArrayList;
 import java.util.Objects;
