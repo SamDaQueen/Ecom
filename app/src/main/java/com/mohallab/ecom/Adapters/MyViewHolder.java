@@ -7,12 +7,12 @@ import android.widget.TextView;
 
 import com.mohallab.ecom.R;
 
-public class MyViewHolder extends RecyclerView.ViewHolder {
+class MyViewHolder extends RecyclerView.ViewHolder {
 
-    public TextView textView;
-    public ImageView imageView;
+    TextView textView;
+    ImageView imageView;
 
-    public MyViewHolder(View v) {
+    MyViewHolder(View v) {
         super(v);
         textView = v.findViewById(R.id.tile_name);
         imageView = v.findViewById(R.id.tile_image);
